@@ -74,7 +74,7 @@ onMounted(() => {
 
 <template>
 	<NuxtLayout>
-		<div class="flex flex-col items-center gap-5 pt-16">
+		<div class="flex flex-col items-center gap-5 pt-16 h-full min-h-[450px]">
 			<div ref="animation" class="flex gap-2">
 				<TodayWeather
 					v-for="card in refWeatherCards"
@@ -86,16 +86,14 @@ onMounted(() => {
 					:wind="card.wind"
 				/>
 			</div>
-			<div class="flex gap-1 flex-col items-center">
+			<div class="flex gap-1 flex-col items-center mt-auto">
 				<p class="text-red-900">{{ refError }}</p>
 				<div class="flex">
 					<BaseInput />
-					<BaseButton
-						v-if="city.message.length > 0"
-						@click-request="addCity()"
-					/>
-					<BaseButton v-else disabled />
-				</div>
+					<BaseButton v-if="city.message.length > 0"
+						@click-request="addCity()">Add</BaseButton>
+						<BaseButton v-else disabled @click-request="addCity()">Add</BaseButton>
+					
 			</div>
 		</div>
 	</NuxtLayout>
