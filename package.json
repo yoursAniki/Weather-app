@@ -1,24 +1,27 @@
 {
-  "name": "weather-app",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "@formkit/auto-animate": "^0.8.1",
-    "axios": "^1.6.7",
-    "nuxt": "^3.10.2",
-    "vue": "^3.4.19",
-    "vue-router": "^4.2.5"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1"
-  }
+	"name": "weather-app",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare"
+	},
+	"dependencies": {
+		"@formkit/auto-animate": "^0.8.1",
+		"axios": "^1.6.7",
+		"nuxt": "^3.10.2",
+		"vue": "^3.4.19",
+		"vue-router": "^4.2.5"
+	},
+	"devDependencies": {
+		"autoprefixer": "^10.4.17",
+		"gh-pages": "^6.1.1",
+		"postcss": "^8.4.35",
+		"tailwindcss": "^3.4.1"
+	}
 }
