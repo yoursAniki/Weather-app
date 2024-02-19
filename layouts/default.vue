@@ -1,10 +1,11 @@
-<script lang="ts" setup>
-</script>
+<script lang="ts" setup></script>
 
 <template>
-	<div>
-		<slot />
-	</div>
+	<section>
+		<div>
+			<slot />
+		</div>
+	</section>
 </template>
 
 <style></style>
