@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, provide, reactive } from "vue";
 import axios from "axios";
+
+import type { MyData } from "./types/types";
 
 let id: number = 0;
 
@@ -18,6 +20,10 @@ const addCity = () => {
 	});
 	console.log(refWeatherCards.value);
 };
+
+const city = reactive<MyData>({ message: "" });
+
+provide("city", city);
 </script>
 
 <template>
@@ -28,7 +34,11 @@ const addCity = () => {
 			</div>
 			<div class="flex gap-1">
 				<BaseInput />
-				<BaseButton @click-request="addCity()" />
+				<BaseButton
+					v-if="city.message.length > 0"
+					@click-request="addCity()"
+				/>
+				<BaseButton v-else disabled />
 			</div>
 		</div>
 	</NuxtLayout>
