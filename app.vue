@@ -1,5 +1,7 @@
+<script setup></script>
+
 <template>
-  <div>
-    <NuxtWelcome />
-  </div>
+	<NuxtLayout>
+		<div></div>
+	</NuxtLayout>
 </template>
