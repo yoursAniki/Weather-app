@@ -1,4 +1,12 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const props = defineProps<{
+	city: string;
+	deg: number;
+	condition: string;
+	humidity: number;
+	wind: number;
+}>();
+</script>
 
 <template>
 	<div
@@ -17,25 +25,25 @@
 					alt="sunny"
 				/>
 				<div>
-					<div class="font-medium text-lg">Valle de Angeles, HN</div>
+					<div class="font-medium text-lg">{{ city }}</div>
 					<div class="text-sm">Monday 01/17/2022</div>
 				</div>
 			</div>
 			<div class="flex items-center flex-col flex-auto justify-center">
-				<div class="text-7xl">15</div>
-				<div class="text-sm">Mostly cloud</div>
+				<div class="text-7xl">{{ deg }}</div>
+				<div class="text-sm">{{ condition }}</div>
 			</div>
-			<div class="flex justify-between flex-wrap text-sm">
+			<div class="flex justify-between flex-wrap text-xs">
 				<div class="flex">
 					<img class="select-none pr-1" src="/water.png" alt="water" />
-					<div>Humidity</div>
-					<div>10KM</div>
+					<div class="mr-1 flex items-center">Humidity</div>
+					<div class="flex items-center">{{ humidity }}%</div>
 				</div>
-				<div>|</div>
+				<!-- <div class="flex items-center">|</div> -->
 				<div class="flex">
 					<img class="select-none pr-1" src="/windy.png" alt="wind" />
-					<div>Wind</div>
-					<div>10KM</div>
+					<div class="mr-1 flex items-center">Wind</div>
+					<div class="flex items-center">{{ wind }}m/s</div>
 				</div>
 			</div>
 		</div>
