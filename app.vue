@@ -90,10 +90,13 @@ onMounted(() => {
 				<p class="text-red-900">{{ refError }}</p>
 				<div class="flex">
 					<BaseInput />
-					<BaseButton v-if="city.message.length > 0"
-						@click-request="addCity()">Add</BaseButton>
-						<BaseButton v-else disabled @click-request="addCity()">Add</BaseButton>
-					
+					<BaseButton v-if="city.message.length > 0" @click-request="addCity()"
+						>Add</BaseButton
+					>
+					<BaseButton v-else disabled @click-request="addCity()"
+						>Add</BaseButton
+					>
+				</div>
 			</div>
 		</div>
 	</NuxtLayout>
