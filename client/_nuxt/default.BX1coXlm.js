@@ -1,0 +1,1 @@
+import{_ as s}from"./_plugin-vue_export-helper.DlAUqK2U.js";import{t,v as o,x as r,L as c}from"./entry.CS-JqfCz.js";const n={},a={class:"background h-screen w-screen p-8"};function d(e,_){return t(),o("section",a,[r("div",null,[c(e.$slots,"default",{},void 0,!0)])])}const u=s(n,[["render",d],["__scopeId","data-v-7478f1e7"]]);export{u as default};
