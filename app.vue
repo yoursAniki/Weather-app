@@ -80,7 +80,7 @@ const deleteAllCards = () => {
 };
 
 const deleteCard = cardId => {
-	refWeatherCards.value.splice(cardId - 1, 1);
+	refWeatherCards.value.splice(cardId-1, 1);
 };
 </script>
 

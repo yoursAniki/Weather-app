@@ -5,7 +5,7 @@ Here is my simple weather application, try it!
 ## Tech stack
 
 ```
-NUXT + VUEJS 3(COMPOSITION API) + AXIOS + TAILWINDCSS + DAISYUI + AUTOANIMATE + VITE
+NUXT + VUE 3(COMPOSITION API) + TYPESCRIPT + AXIOS + TAILWINDCSS + DAISYUI + AUTOANIMATE + VITE
 ```
 
 ## Nuxt 3 Minimal Starter
