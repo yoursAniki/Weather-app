@@ -33,7 +33,7 @@ const props = defineProps<{
 				</div>
 			</div>
 			<div class="flex items-center flex-col flex-auto justify-center">
-				<div class="text-7xl">{{ deg }}</div>
+				<div class="text-7xl">{{ deg }}&#176;</div>
 				<div class="text-sm">{{ condition }}</div>
 			</div>
 			<div class="flex justify-between flex-wrap text-xs">

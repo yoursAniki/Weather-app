@@ -52,7 +52,7 @@ const addCity = () => {
 			refWeatherCards.value.push({
 				id: ++id,
 				city: info.name,
-				deg: info.main.feels_like,
+				deg: Math.round(info.main.feels_like),
 				condition: info.weather[0].description,
 				humidity: info.main.humidity,
 				wind: info.wind.speed,
