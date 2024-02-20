@@ -21,6 +21,7 @@ interface IWeatherCard {
 	condition: string;
 	humidity: number;
 	wind: number;
+	date: string;
 }
 
 const weatherCards: IWeatherCard[] = [];
@@ -37,25 +38,37 @@ const addCity = () => {
 	}
 	refError.value = "";
 
+	const cutToSpace = (str: string): string => {
+		const currentDate: string = str;
+		const index: number = currentDate.indexOf(" ");
+		const result: string = currentDate.substring(0, index);
+		return result;
+	};
+
 	// if (refWeatherCards.value.length === 3) {
 	// 	refWeatherCards.value.shift();
 	// }
 
 	axios
 		.get(
-			`https://api.openweathermap.org/data/2.5/weather?q=${city.message}&units=metric&lang=ru&appid=b93ead9e942361f9190e775a6220a511`
+			`https://api.openweathermap.org/data/2.5/forecast?q=${city.message}&units=metric&cnt=3&lang=ru&appid=b93ead9e942361f9190e775a6220a511`
 		)
+
 		.then(res => {
 			info = res.data;
 			city.message = "";
 			console.log(info);
+			const thisDate: string = info.list[0].dt_txt;
+			const index: number = thisDate.indexOf(" ");
+			const result: string = thisDate.substring(0, index);
 			refWeatherCards.value.push({
 				id: ++id,
-				city: info.name,
-				deg: Math.round(info.main.feels_like),
-				condition: info.weather[0].description,
-				humidity: info.main.humidity,
-				wind: info.wind.speed,
+				city: info.city.name,
+				deg: Math.round(info.list[0].main.temp),
+				condition: info.list[0].weather[0].description,
+				humidity: info.list[0].main.humidity,
+				wind: info.list[0].wind.speed,
+				date: cutToSpace(info.list[0].dt_txt),
 			});
 		})
 		.catch(error => {
@@ -80,7 +93,7 @@ const deleteAllCards = () => {
 };
 
 const deleteCard = cardId => {
-	refWeatherCards.value.splice(cardId-1, 1);
+	refWeatherCards.value.splice(cardId - 1, 1);
 };
 </script>
 
@@ -102,6 +115,7 @@ const deleteCard = cardId => {
 					:condition="card.condition"
 					:humidity="card.humidity"
 					:wind="card.wind"
+					:date="card.date"
 					@delete-request="deleteCard(card.id)"
 				/>
 				<!-- <div class="flex justify-center w-full py-2 gap-2 absolute bottom-0">

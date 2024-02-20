@@ -11,6 +11,7 @@ const props = defineProps<{
 	condition: string;
 	humidity: number;
 	wind: number;
+	date: string;
 }>();
 
 const deleteCard = () => {
@@ -48,7 +49,7 @@ const deleteCard = () => {
 				/>
 				<div>
 					<div class="font-medium text-lg">{{ city }}</div>
-					<div class="text-sm">Monday 01/17/2022</div>
+					<div class="text-sm">{{ date }}</div>
 				</div>
 			</div>
 			<div class="flex items-center flex-col flex-auto justify-center">
