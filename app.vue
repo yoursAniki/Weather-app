@@ -78,6 +78,10 @@ onMounted(() => {
 const deleteAllCards = () => {
 	refWeatherCards.value.splice(0, refWeatherCards.value.length);
 };
+
+const deleteCard = cardId => {
+	refWeatherCards.value.splice(cardId-1, 1);
+};
 </script>
 
 <template>
@@ -98,6 +102,7 @@ const deleteAllCards = () => {
 					:condition="card.condition"
 					:humidity="card.humidity"
 					:wind="card.wind"
+					@delete-request="deleteCard(card.id)"
 				/>
 				<!-- <div class="flex justify-center w-full py-2 gap-2 absolute bottom-0">
 					<a
