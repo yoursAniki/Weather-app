@@ -111,11 +111,13 @@ onMounted(() => {
 
 const deleteAllCards = () => {
 	refWeatherCards.value.splice(0, refWeatherCards.value.length);
+	id = 0
 };
 
 const deleteCard = cardId => {
-	console.log(cardId)
+	console.log(cardId);
 	refWeatherCards.value.splice(cardId, 1);
+	id--;
 };
 </script>
 
