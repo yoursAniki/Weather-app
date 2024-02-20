@@ -22,6 +22,9 @@ interface IWeatherCard {
 	humidity: number;
 	wind: number;
 	date: string;
+	nextDay: object;
+	thirdDay: object;
+	fourthDay: object;
 }
 
 const weatherCards: IWeatherCard[] = [];
@@ -51,16 +54,13 @@ const addCity = () => {
 
 	axios
 		.get(
-			`https://api.openweathermap.org/data/2.5/forecast?q=${city.message}&units=metric&cnt=3&lang=ru&appid=b93ead9e942361f9190e775a6220a511`
+			`https://api.openweathermap.org/data/2.5/forecast?q=${city.message}&units=metric&cnt=19&lang=ru&appid=b93ead9e942361f9190e775a6220a511`
 		)
 
 		.then(res => {
 			info = res.data;
 			city.message = "";
 			console.log(info);
-			const thisDate: string = info.list[0].dt_txt;
-			const index: number = thisDate.indexOf(" ");
-			const result: string = thisDate.substring(0, index);
 			refWeatherCards.value.push({
 				id: ++id,
 				city: info.city.name,
@@ -69,6 +69,27 @@ const addCity = () => {
 				humidity: info.list[0].main.humidity,
 				wind: info.list[0].wind.speed,
 				date: cutToSpace(info.list[0].dt_txt),
+				nextDay: {
+					deg: Math.round(info.list[2].main.temp),
+					condition: info.list[2].weather[0].description,
+					humidity: info.list[2].main.humidity,
+					wind: info.list[2].wind.speed,
+					date: cutToSpace(info.list[2].dt_txt),
+				},
+				thirdDay: {
+					deg: Math.round(info.list[10].main.temp),
+					condition: info.list[10].weather[0].description,
+					humidity: info.list[10].main.humidity,
+					wind: info.list[10].wind.speed,
+					date: cutToSpace(info.list[10].dt_txt),
+				},
+				fourthDay: {
+					deg: Math.round(info.list[18].main.temp),
+					condition: info.list[18].weather[0].description,
+					humidity: info.list[18].main.humidity,
+					wind: info.list[18].wind.speed,
+					date: cutToSpace(info.list[18].dt_txt),
+				},
 			});
 		})
 		.catch(error => {
@@ -100,14 +121,14 @@ const deleteCard = cardId => {
 <template>
 	<NuxtLayout>
 		<div
-			class="flex flex-col items-center gap-5 pt-16 h-full min-h-[450px] justify-center"
+			class="flex flex-col items-center gap-5 h-full min-h-[450px] justify-center"
 		>
 			<div
 				ref="animation"
 				class="flex gap-2 carousel w-full relative justify-start"
 			>
 				<TodayWeather
-					class="carousel-item w-full flex items-center justify-center"
+					class="carousel-item w-full h-full flex items-center justify-center"
 					v-for="card in refWeatherCards"
 					:key="card.id"
 					:city="card.city"
@@ -117,7 +138,30 @@ const deleteCard = cardId => {
 					:wind="card.wind"
 					:date="card.date"
 					@delete-request="deleteCard(card.id)"
-				/>
+					><LaterWeather
+						:deg="card.nextDay.deg"
+						:condition="card.nextDay.condition"
+						:humidity="card.nextDay.humidity"
+						:wind="card.nextDay.wind"
+						:date="card.nextDay.date"
+					/>
+
+					<LaterWeather
+						:deg="card.thirdDay.deg"
+						:condition="card.thirdDay.condition"
+						:humidity="card.thirdDay.humidity"
+						:wind="card.thirdDay.wind"
+						:date="card.thirdDay.date"
+					/>
+
+					<LaterWeather
+						:deg="card.fourthDay.deg"
+						:condition="card.fourthDay.condition"
+						:humidity="card.fourthDay.humidity"
+						:wind="card.fourthDay.wind"
+						:date="card.fourthDay.date"
+					/>
+				</TodayWeather>
 				<!-- <div class="flex justify-center w-full py-2 gap-2 absolute bottom-0">
 					<a
 						v-for="card in refWeatherCards"
