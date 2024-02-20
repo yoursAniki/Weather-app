@@ -21,7 +21,7 @@ const deleteCard = () => {
 
 <template>
 	<div class="flex flex-col h-full">
-		<div class="flex justify-center gap-1">
+		<div class="justify-center gap-1 sm:flex hidden">
 			<slot></slot>
 		</div>
 		<div

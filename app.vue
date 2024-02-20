@@ -128,7 +128,7 @@ const deleteCard = cardId => {
 				class="flex gap-2 carousel w-full relative justify-start"
 			>
 				<TodayWeather
-					class="carousel-item w-full h-full flex items-center justify-center"
+					class="carousel-item w-full max-w-96 h-full flex items-center justify-center"
 					v-for="card in refWeatherCards"
 					:key="card.id"
 					:city="card.city"

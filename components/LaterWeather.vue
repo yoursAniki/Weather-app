@@ -8,7 +8,9 @@ const props = defineProps<{
 }>();
 </script>
 <template>
-	<div class="bg-black bg-opacity-30 rounded-2xl min-h-full min-w-full w-9">
+	<div
+		class="bg-black bg-opacity-30 rounded-2xl min-h-full min-w-full w-9"
+	>
 		<div
 			class="h-full p-1 text-xs flex flex-col items-center text-white justify-between"
 		>
