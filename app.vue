@@ -74,6 +74,10 @@ const animation = ref();
 onMounted(() => {
 	autoAnimate(animation.value);
 });
+
+const deleteAllCards = () => {
+	refWeatherCards.value.splice(0, refWeatherCards.value.length);
+};
 </script>
 
 <template>
@@ -116,6 +120,9 @@ onMounted(() => {
 					>
 				</div>
 			</div>
+			<BaseButton @click-request="deleteAllCards()" class="absolute bottom-28">
+				Delete all
+			</BaseButton>
 		</div>
 	</NuxtLayout>
 </template>
