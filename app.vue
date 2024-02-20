@@ -37,6 +37,10 @@ const addCity = () => {
 	}
 	refError.value = "";
 
+	// if (refWeatherCards.value.length === 3) {
+	// 	refWeatherCards.value.shift();
+	// }
+
 	axios
 		.get(
 			`https://api.openweathermap.org/data/2.5/weather?q=${city.message}&units=metric&lang=ru&appid=b93ead9e942361f9190e775a6220a511`
@@ -74,9 +78,15 @@ onMounted(() => {
 
 <template>
 	<NuxtLayout>
-		<div class="flex flex-col items-center gap-5 pt-16 h-full min-h-[450px]">
-			<div ref="animation" class="flex gap-2">
+		<div
+			class="flex flex-col items-center gap-5 pt-16 h-full min-h-[450px] justify-center"
+		>
+			<div
+				ref="animation"
+				class="flex gap-2 carousel w-full relative justify-center"
+			>
 				<TodayWeather
+					class="carousel-item w-full flex items-center justify-center"
 					v-for="card in refWeatherCards"
 					:key="card.id"
 					:city="card.city"
@@ -85,6 +95,14 @@ onMounted(() => {
 					:humidity="card.humidity"
 					:wind="card.wind"
 				/>
+				<!-- <div class="flex justify-center w-full py-2 gap-2 absolute bottom-0">
+					<a
+						v-for="card in refWeatherCards"
+						:href="'#item' + card.id"
+						class="btn btn-xs"
+						>{{ card.id }}</a
+					>
+				</div> -->
 			</div>
 			<div class="flex gap-1 flex-col items-center mt-auto">
 				<p class="text-red-900">{{ refError }}</p>

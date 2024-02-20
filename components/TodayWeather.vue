@@ -9,6 +9,9 @@ const props = defineProps<{
 </script>
 
 <template>
+	<div>
+		
+	</div>
 	<div
 		class="bg-black bg-opacity-30 rounded-3xl h-80 max-w-[312px] w-full min-h-full text-white"
 	>
