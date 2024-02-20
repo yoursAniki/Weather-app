@@ -111,7 +111,7 @@ onMounted(() => {
 
 const deleteAllCards = () => {
 	refWeatherCards.value.splice(0, refWeatherCards.value.length);
-	id = 0
+	id = 0;
 };
 
 const deleteCard = cardId => {
@@ -177,7 +177,7 @@ const deleteCard = cardId => {
 			<div class="flex gap-1 flex-col items-center mt-auto">
 				<p class="text-red-900">{{ refError }}</p>
 				<div class="flex">
-					<BaseInput />
+					<BaseInput @click-request="addCity()" />
 					<BaseButton v-if="city.message.length > 0" @click-request="addCity()"
 						>Add</BaseButton
 					>
