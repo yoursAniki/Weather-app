@@ -62,7 +62,7 @@ const addCity = () => {
 			city.message = "";
 			console.log(info);
 			refWeatherCards.value.push({
-				id: ++id,
+				id: id++,
 				city: info.city.name,
 				deg: Math.round(info.list[0].main.temp),
 				condition: info.list[0].weather[0].description,
@@ -114,7 +114,8 @@ const deleteAllCards = () => {
 };
 
 const deleteCard = cardId => {
-	refWeatherCards.value.splice(cardId - 1, 1);
+	console.log(cardId)
+	refWeatherCards.value.splice(cardId, 1);
 };
 </script>
 
