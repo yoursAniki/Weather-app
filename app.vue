@@ -83,7 +83,7 @@ onMounted(() => {
 		>
 			<div
 				ref="animation"
-				class="flex gap-2 carousel w-full relative justify-center"
+				class="flex gap-2 carousel w-full relative justify-start"
 			>
 				<TodayWeather
 					class="carousel-item w-full flex items-center justify-center"
