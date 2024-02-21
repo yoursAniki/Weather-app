@@ -65,7 +65,7 @@ const refError = ref(error);
 
 const addCity = () => {
 	if (city.message.trim().length < 2) {
-		refError.value = "You need enter name with length more than 1";
+		refError.value = "You need to enter a name with a length of more than 1.";
 		return;
 	}
 	refError.value = "";
@@ -136,7 +136,7 @@ const addCity = () => {
 		.catch(error => {
 			console.error("Error fetching data:", error);
 			// Обработка ошибок:
-			refError.value = "An error occurred while fetching data";
+			refError.value = "The name of the city was entered incorrectly.";
 		});
 };
 
@@ -269,6 +269,12 @@ const deleteCard = cardId => {
 				<p class="text-red-900">{{ refError }}</p>
 				<div class="flex">
 					<BaseInput @click-request="addCity()" />
+					<div
+						class="absolute -bottom-2 text-slate-800 min-w-[200px] text-nowrap text-center"
+					>
+						You want to check weather at
+						{{ city.message == "" ? "your city" : "<" + city.message + ">" }}
+					</div>
 					<BaseButton v-if="city.message.length > 0" @click-request="addCity()"
 						>Add</BaseButton
 					>
@@ -277,9 +283,9 @@ const deleteCard = cardId => {
 					>
 				</div>
 				<BaseButton
-					v-show="refWeatherCards.values.length > 0"
+					v-show="weatherCards.length > 0"
 					@click-request="deleteAllCards()"
-					class="absolute -bottom-14"
+					class="absolute -bottom-20"
 				>
 					Delete all
 				</BaseButton>
