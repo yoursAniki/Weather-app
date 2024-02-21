@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import { defineEmits } from "vue";
 
-const emits = defineEmits<{
-	deleteCard: () => void;
-}>();
+const emits = defineEmits(["delete-request"]);
 
-const props = defineProps<{
+defineProps<{
 	city: string;
 	deg: number;
 	condition: string;
@@ -22,6 +20,7 @@ const deleteCard = () => {
 <template>
 	<div class="flex flex-col h-full">
 		<div class="justify-center gap-1 sm:flex hidden">
+			<!-- Слот для дочерних погодных карт -->
 			<slot name="cards"></slot>
 		</div>
 		<div
@@ -46,6 +45,7 @@ const deleteCard = () => {
 				</div>
 				<div class="flex justify-around">
 					<div class="select-none max-h-14">
+						<!-- Слот для иконки -->
 						<slot name="weather-icon"></slot>
 					</div>
 					<div>

@@ -67,6 +67,7 @@ const addCity = () => {
 	}
 	refError.value = "";
 
+	// Обрезаем данную в API дату до более короткой (год/месяц/число)
 	const cutToSpace = (str: string): string => {
 		const currentDate: string = str;
 		const index: number = currentDate.indexOf(" ");
@@ -83,7 +84,7 @@ const addCity = () => {
 			info = res.data;
 			city.message = "";
 
-			// Фильтрация по датам для корректного отображения только 4 разных дней
+			// Фильтрация по датам обеспечивающая корректное отображение только 4 различных дней
 			const daysMap = new Map<string, any>();
 
 			for (const item of info.list) {
