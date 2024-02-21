@@ -5,15 +5,13 @@ import { inject } from "vue";
 
 import type { MyData } from "/types/types.ts";
 
-const city = inject("city") as MyData;
-
-const emits = defineEmits<{
-	click: () => void;
-}>();
+const emits = defineEmits(["click-request"]);
 
 const click = () => {
 	emits("click-request");
 };
+
+const city = inject("city") as MyData;
 </script>
 
 <template>
@@ -25,11 +23,5 @@ const click = () => {
 			type="text"
 			placeholder="Enter your city"
 		/>
-		<!-- <div class="absolute text-slate-800">
-			You want to check weather at
-			{{ city.message == "" ? "your city" : "<" + city.message + ">" }}
-		</div> -->
 	</div>
 </template>
-
-<style></style>

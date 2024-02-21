@@ -2,15 +2,11 @@
 import axios from "axios";
 import autoAnimate from "@formkit/auto-animate";
 
-import { ref, provide, reactive } from "vue";
-
 interface CityResponse {
 	name: string;
 }
 
 let info: CityResponse | null = null;
-
-import type { MyData } from "./types/types";
 
 let id: number = 0;
 
@@ -35,6 +31,7 @@ interface IParams {
 	day4: { dt_txt: string };
 }
 
+// Иконки для погоды с их id
 const weatherIcons: Record<string, string> = {
 	"01d": "/weather/clear-sky.png", // ясное небо (день)
 	"01n": "/weather/clear-sky.png", // ясное небо (ночь)
@@ -57,12 +54,12 @@ const weatherIcons: Record<string, string> = {
 };
 
 const weatherCards: IWeatherCard[] = [];
-
 const refWeatherCards = ref(weatherCards);
 
 let error: string = "";
 const refError = ref(error);
 
+// Добавление карточки с погодой
 const addCity = () => {
 	if (city.message.trim().length < 2) {
 		refError.value = "You need to enter a name with a length of more than 1.";
@@ -85,8 +82,8 @@ const addCity = () => {
 		.then(res => {
 			info = res.data;
 			city.message = "";
-			console.log(info);
 
+			// Фильтрация по датам для корректного отображения только 4 разных дней
 			const daysMap = new Map<string, any>();
 
 			for (const item of info.list) {
@@ -100,7 +97,6 @@ const addCity = () => {
 			}
 
 			const days = Array.from(daysMap.values());
-			console.log(days);
 			refWeatherCards.value.push({
 				id: id++,
 				city: info.city.name,
@@ -144,17 +140,19 @@ const city = reactive<MyData>({ message: "" });
 
 provide("city", city);
 
+// Подключение анимаций из библиотеки AutoAnimate
 const animation = ref();
-
 onMounted(() => {
 	autoAnimate(animation.value);
 });
 
+// Удаление всех карточек
 const deleteAllCards = () => {
 	refWeatherCards.value.splice(0, refWeatherCards.value.length);
 	id = 0;
 };
 
+// Удаление конкретной карточки
 const deleteCard = cardId => {
 	console.log(cardId);
 	refWeatherCards.value.splice(cardId, 1);
@@ -171,6 +169,7 @@ const deleteCard = cardId => {
 				ref="animation"
 				class="flex gap-2 carousel w-full relative justify-start"
 			>
+				<!-- Рендер главной и дочерних погодных карточек -->
 				<TodayWeather
 					class="carousel-item w-full max-w-96 h-full flex items-center justify-center"
 					v-for="card in refWeatherCards"
@@ -183,6 +182,8 @@ const deleteCard = cardId => {
 					:date="card.date"
 					@delete-request="deleteCard(card.id)"
 				>
+					<!-- Не совсем соответствует тз, но я решил, что это тоже неплохое решение -->
+					<!-- Рендер дочерних карточек с погодой (на следующие три дня) -->
 					<template v-slot:cards>
 						<LaterWeather
 							:deg="card.nextDay.deg"
@@ -208,6 +209,7 @@ const deleteCard = cardId => {
 							:date="card.fourthDay.date"
 						/>
 					</template>
+					<!-- Рендер иконок в зависимости от погодных условий -->
 					<template v-slot:weather-icon>
 						<img
 							v-if="card.weatherId === '01d' || card.weatherId === '01n'"
@@ -266,6 +268,7 @@ const deleteCard = cardId => {
 				</div> -->
 			</div>
 			<div class="flex gap-1 flex-col items-center mt-auto pb-4 relative">
+				<!-- Отображение ошибки ввода -->
 				<p class="text-red-900">{{ refError }}</p>
 				<div class="flex">
 					<BaseInput @click-request="addCity()" />
