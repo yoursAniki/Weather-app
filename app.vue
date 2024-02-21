@@ -54,7 +54,7 @@ const addCity = () => {
 
 	axios
 		.get(
-			`https://api.openweathermap.org/data/2.5/forecast?q=${city.message}&units=metric&cnt=19&lang=ru&appid=b93ead9e942361f9190e775a6220a511`
+			`https://api.openweathermap.org/data/2.5/forecast?q=${city.message}&units=metric&lang=ru&appid=b93ead9e942361f9190e775a6220a511`
 		)
 
 		.then(res => {
@@ -70,25 +70,25 @@ const addCity = () => {
 				wind: info.list[0].wind.speed,
 				date: cutToSpace(info.list[0].dt_txt),
 				nextDay: {
-					deg: Math.round(info.list[2].main.temp),
-					condition: info.list[2].weather[0].description,
-					humidity: info.list[2].main.humidity,
-					wind: info.list[2].wind.speed,
-					date: cutToSpace(info.list[2].dt_txt),
+					deg: Math.round(info.list[9].main.temp),
+					condition: info.list[9].weather[0].description,
+					humidity: info.list[9].main.humidity,
+					wind: info.list[9].wind.speed,
+					date: cutToSpace(info.list[9].dt_txt),
 				},
 				thirdDay: {
-					deg: Math.round(info.list[10].main.temp),
-					condition: info.list[10].weather[0].description,
-					humidity: info.list[10].main.humidity,
-					wind: info.list[10].wind.speed,
-					date: cutToSpace(info.list[10].dt_txt),
+					deg: Math.round(info.list[17].main.temp),
+					condition: info.list[17].weather[0].description,
+					humidity: info.list[17].main.humidity,
+					wind: info.list[17].wind.speed,
+					date: cutToSpace(info.list[17].dt_txt),
 				},
 				fourthDay: {
-					deg: Math.round(info.list[18].main.temp),
-					condition: info.list[18].weather[0].description,
-					humidity: info.list[18].main.humidity,
-					wind: info.list[18].wind.speed,
-					date: cutToSpace(info.list[18].dt_txt),
+					deg: Math.round(info.list[25].main.temp),
+					condition: info.list[25].weather[0].description,
+					humidity: info.list[25].main.humidity,
+					wind: info.list[25].wind.speed,
+					date: cutToSpace(info.list[25].dt_txt),
 				},
 			});
 		})
