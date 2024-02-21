@@ -5,15 +5,14 @@ import "ofetch";
 import "hookable";
 import "unctx";
 import "h3";
-import "ufo";
 import "unhead";
 import "@unhead/shared";
+import "vue-router";
+import "ufo";
 import "defu";
 import "klona";
 import "devalue";
 import "vue/server-renderer";
-import "axios";
-import "@formkit/auto-animate";
 const islandComponents = {};
 const islandRenderer = defineComponent({
   props: {
@@ -39,4 +38,4 @@ const islandRenderer = defineComponent({
 export {
   islandRenderer as default
 };
-//# sourceMappingURL=island-renderer-CuLaJZtp.js.map
+//# sourceMappingURL=island-renderer-eQdyCZUE.js.map

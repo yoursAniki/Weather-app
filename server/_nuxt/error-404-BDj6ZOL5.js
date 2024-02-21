@@ -1,9 +1,8 @@
 import { defineComponent, computed, ref, h, resolveComponent, mergeProps, withCtx, createTextVNode, toDisplayString, useSSRContext } from "vue";
 import { hasProtocol, joinURL, parseURL, parseQuery, withTrailingSlash, withoutTrailingSlash } from "ufo";
-import { u as useRouter, n as nuxtLinkDefaults, a as useRuntimeConfig, b as navigateTo } from "../server.mjs";
+import { u as useRouter, n as nuxtLinkDefaults, a as useRuntimeConfig, b as navigateTo, _ as _export_sfc } from "../server.mjs";
 import { u as useHead } from "./index-BabADJUJ.js";
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderComponent } from "vue/server-renderer";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper-1tPrXgE0.js";
 import "#internal/nitro";
 import "ofetch";
 import "hookable";
@@ -11,11 +10,10 @@ import "unctx";
 import "h3";
 import "unhead";
 import "@unhead/shared";
+import "vue-router";
 import "defu";
 import "klona";
 import "devalue";
-import "axios";
-import "@formkit/auto-animate";
 const firstNonUndefined = (...args) => args.find((arg) => arg !== void 0);
 // @__NO_SIDE_EFFECTS__
 function defineNuxtLink(options) {
@@ -297,4 +295,4 @@ const error404 = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-c
 export {
   error404 as default
 };
-//# sourceMappingURL=error-404-CIu0Kfu6.js.map
+//# sourceMappingURL=error-404-BDj6ZOL5.js.map

@@ -1,17 +1,10 @@
 {
-  "__plugin-vue_export-helper.DlAUqK2U.js": {
+  "_vue.f36acd1f.D2PjWxj9.js": {
     "resourceType": "script",
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "_plugin-vue_export-helper.DlAUqK2U.js"
-  },
-  "_vue.f36acd1f.DvW06moA.js": {
-    "resourceType": "script",
-    "module": true,
-    "prefetch": true,
-    "preload": true,
-    "file": "vue.f36acd1f.DvW06moA.js",
+    "file": "vue.f36acd1f.D2PjWxj9.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -21,11 +14,10 @@
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "default.BX1coXlm.js",
+    "file": "default.BqVaovwP.js",
     "src": "layouts/default.vue",
     "isDynamicEntry": true,
     "imports": [
-      "__plugin-vue_export-helper.DlAUqK2U.js",
       "node_modules/nuxt/dist/app/entry.js"
     ],
     "css": []
@@ -41,13 +33,12 @@
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "error-404.CL0-b8aG.js",
+    "file": "error-404.Bpu2_ScO.js",
     "src": "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_vue.f36acd1f.DvW06moA.js",
-      "__plugin-vue_export-helper.DlAUqK2U.js"
+      "_vue.f36acd1f.D2PjWxj9.js"
     ],
     "css": []
   },
@@ -62,12 +53,11 @@
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "error-500.DayqIWdr.js",
+    "file": "error-500.CXzcz8St.js",
     "src": "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_vue.f36acd1f.DvW06moA.js",
-      "__plugin-vue_export-helper.DlAUqK2U.js",
+      "_vue.f36acd1f.D2PjWxj9.js",
       "node_modules/nuxt/dist/app/entry.js"
     ],
     "css": []
@@ -83,7 +73,7 @@
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "entry.CS-JqfCz.js",
+    "file": "entry.DJYizY3k.js",
     "src": "node_modules/nuxt/dist/app/entry.js",
     "isEntry": true,
     "dynamicImports": [
@@ -92,5 +82,17 @@
       "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue"
     ],
     "_globalCSS": true
+  },
+  "pages/index.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "index.WRZpGZOI.js",
+    "src": "pages/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ]
   }
 }

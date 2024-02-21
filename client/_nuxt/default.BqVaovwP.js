@@ -1,0 +1,1 @@
+import{_ as s,v as t,x as c,L as n,t as a}from"./entry.DJYizY3k.js";const o={},r={class:"background h-screen w-screen p-8"};function d(e,_){return a(),t("section",r,[c("div",null,[n(e.$slots,"default",{},void 0,!0)])])}const f=s(o,[["render",d],["__scopeId","data-v-7478f1e7"]]);export{f as default};

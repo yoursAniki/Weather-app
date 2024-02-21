@@ -1,6 +1,18 @@
 import { mergeProps, useSSRContext } from "vue";
 import { ssrRenderAttrs, ssrRenderSlot } from "vue/server-renderer";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper-1tPrXgE0.js";
+import { _ as _export_sfc } from "../server.mjs";
+import "#internal/nitro";
+import "ofetch";
+import "hookable";
+import "unctx";
+import "h3";
+import "unhead";
+import "@unhead/shared";
+import "vue-router";
+import "ufo";
+import "defu";
+import "klona";
+import "devalue";
 const _sfc_main = {};
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
   _push(`<section${ssrRenderAttrs(mergeProps({ class: "background h-screen w-screen p-8" }, _attrs))} data-v-7478f1e7><div data-v-7478f1e7>`);
@@ -17,4 +29,4 @@ const _default = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrR
 export {
   _default as default
 };
-//# sourceMappingURL=default-BEF4xvOE.js.map
+//# sourceMappingURL=default-DYQE2MbV.js.map

@@ -1,21 +1,19 @@
 import { u as useHead } from "./index-BabADJUJ.js";
 import { mergeProps, useSSRContext } from "vue";
 import { ssrRenderAttrs, ssrInterpolate } from "vue/server-renderer";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper-1tPrXgE0.js";
-import "../server.mjs";
+import { _ as _export_sfc } from "../server.mjs";
+import "@unhead/shared";
 import "#internal/nitro";
 import "ofetch";
 import "hookable";
 import "unctx";
 import "h3";
-import "ufo";
 import "unhead";
-import "@unhead/shared";
+import "vue-router";
+import "ufo";
 import "defu";
 import "klona";
 import "devalue";
-import "axios";
-import "@formkit/auto-animate";
 const _sfc_main = {
   __name: "error-500",
   __ssrInlineRender: true,
@@ -67,4 +65,4 @@ const error500 = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-d
 export {
   error500 as default
 };
-//# sourceMappingURL=error-500-CcR7U39K.js.map
+//# sourceMappingURL=error-500-5cNttxtn.js.map
