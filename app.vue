@@ -27,6 +27,13 @@ interface IWeatherCard {
 	fourthDay: object;
 }
 
+interface IParams {
+	day1: { dt_txt: string };
+	day2: { dt_txt: string };
+	day3: { dt_txt: string };
+	day4: { dt_txt: string };
+}
+
 const weatherCards: IWeatherCard[] = [];
 
 const refWeatherCards = ref(weatherCards);
@@ -48,10 +55,6 @@ const addCity = () => {
 		return result;
 	};
 
-	// if (refWeatherCards.value.length === 3) {
-	// 	refWeatherCards.value.shift();
-	// }
-
 	axios
 		.get(
 			`https://api.openweathermap.org/data/2.5/forecast?q=${city.message}&units=metric&lang=ru&appid=b93ead9e942361f9190e775a6220a511`
@@ -61,34 +64,49 @@ const addCity = () => {
 			info = res.data;
 			city.message = "";
 			console.log(info);
+
+			const daysMap = new Map<string, any>();
+
+			for (const item of info.list) {
+				const itemDate = new Date(item.dt_txt).toDateString();
+				if (!daysMap.has(itemDate)) {
+					daysMap.set(itemDate, item);
+				}
+				if (daysMap.size > 3) {
+					break;
+				}
+			}
+
+			const days = Array.from(daysMap.values());
+			console.log(days);
 			refWeatherCards.value.push({
 				id: id++,
 				city: info.city.name,
-				deg: Math.round(info.list[0].main.temp),
-				condition: info.list[0].weather[0].description,
-				humidity: info.list[0].main.humidity,
-				wind: info.list[0].wind.speed,
-				date: cutToSpace(info.list[0].dt_txt),
+				deg: Math.round(days[0].main.temp),
+				condition: days[0].weather[0].description,
+				humidity: days[0].main.humidity,
+				wind: days[0].wind.speed,
+				date: cutToSpace(days[0].dt_txt),
 				nextDay: {
-					deg: Math.round(info.list[9].main.temp),
-					condition: info.list[9].weather[0].description,
-					humidity: info.list[9].main.humidity,
-					wind: info.list[9].wind.speed,
-					date: cutToSpace(info.list[9].dt_txt),
+					deg: Math.round(days[1].main.temp),
+					condition: days[1].weather[0].description,
+					humidity: days[1].main.humidity,
+					wind: days[1].wind.speed,
+					date: cutToSpace(days[1].dt_txt),
 				},
 				thirdDay: {
-					deg: Math.round(info.list[17].main.temp),
-					condition: info.list[17].weather[0].description,
-					humidity: info.list[17].main.humidity,
-					wind: info.list[17].wind.speed,
-					date: cutToSpace(info.list[17].dt_txt),
+					deg: Math.round(days[2].main.temp),
+					condition: days[2].weather[0].description,
+					humidity: days[2].main.humidity,
+					wind: days[2].wind.speed,
+					date: cutToSpace(days[2].dt_txt),
 				},
 				fourthDay: {
-					deg: Math.round(info.list[25].main.temp),
-					condition: info.list[25].weather[0].description,
-					humidity: info.list[25].main.humidity,
-					wind: info.list[25].wind.speed,
-					date: cutToSpace(info.list[25].dt_txt),
+					deg: Math.round(days[3].main.temp),
+					condition: days[3].weather[0].description,
+					humidity: days[3].main.humidity,
+					wind: days[3].wind.speed,
+					date: cutToSpace(days[3].dt_txt),
 				},
 			});
 		})
