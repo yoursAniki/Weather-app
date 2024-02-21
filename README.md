@@ -2,6 +2,17 @@
 
 Here is my simple weather application, try it!
 
+## Main features
+
+- You can add as many weather cards as you want
+- Adaptive design
+- You can move your cards on slider if there are too many of them
+- Every weather card includes 3 mini cards with weather for three next days
+- You can delete each individual card or all cards at once
+- Add your cards by only clicking enter when focused on input
+- User-friendly interface
+- Smooth animations of adding and deleting cards.
+
 ## Tech stack
 
 ```
