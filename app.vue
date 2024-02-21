@@ -261,7 +261,9 @@ const deleteCard = cardId => {
 					</template>
 				</TodayWeather>
 			</div>
-			<div class="flex justify-center w-full py-2 gap-2 absolute bottom-0">
+			<div
+				class="flex justify-center w-full py-2 gap-2 absolute bottom-0 flex-wrap"
+			>
 				<a
 					v-for="card in refWeatherCards"
 					:href="'#item' + card.id"
@@ -290,7 +292,7 @@ const deleteCard = cardId => {
 				<BaseButton
 					v-show="weatherCards.length > 0"
 					@click-request="deleteAllCards()"
-					class="absolute -bottom-20"
+					class="absolute -bottom-10"
 				>
 					Delete all
 				</BaseButton>
