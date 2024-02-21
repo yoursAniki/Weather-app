@@ -25,6 +25,7 @@ interface IWeatherCard {
 	nextDay: object;
 	thirdDay: object;
 	fourthDay: object;
+	weatherId: string;
 }
 
 interface IParams {
@@ -33,6 +34,27 @@ interface IParams {
 	day3: { dt_txt: string };
 	day4: { dt_txt: string };
 }
+
+const weatherIcons: Record<string, string> = {
+	"01d": "/weather/clear-sky.png", // ясное небо (день)
+	"01n": "/weather/clear-sky.png", // ясное небо (ночь)
+	"02d": "/weather/few-clouds.png", // небольшая облачность (день)
+	"02n": "/weather/few-clouds.png", // небольшая облачность (ночь)
+	"03d": "/weather/few-clouds.png", // рассеянные облака (день)
+	"03n": "/weather/few-clouds.png", // рассеянные облака (ночь)
+	"04d": "/weather/broken-clouds.png", // облачно (день)
+	"04n": "/weather/broken-clouds.png", // облачно (ночь)
+	"09d": "/weather/shower-rain.png", // дождь (день)
+	"09n": "/weather/shower-rain.png", // дождь (ночь)
+	"10d": "/weather/rain.png", // дождь (день)
+	"10n": "/weather/rain.png", // дождь (ночь)
+	"11d": "/weather/thunderstorm.png", // гроза (день)
+	"11n": "/weather/thunderstorm.png", // гроза (ночь)
+	"13d": "/weather/snow.png", // снег (день)
+	"13n": "/weather/snow.png", // снег (ночь)
+	"50d": "/weather/mist.png", // туман (день)
+	"50n": "/weather/mist.png", // туман (ночь)
+};
 
 const weatherCards: IWeatherCard[] = [];
 
@@ -87,6 +109,7 @@ const addCity = () => {
 				humidity: days[0].main.humidity,
 				wind: days[0].wind.speed,
 				date: cutToSpace(days[0].dt_txt),
+				weatherId: days[0].weather[0].icon,
 				nextDay: {
 					deg: Math.round(days[1].main.temp),
 					condition: days[1].weather[0].description,
@@ -142,7 +165,7 @@ const deleteCard = cardId => {
 <template>
 	<NuxtLayout>
 		<div
-			class="flex flex-col items-center gap-5 h-full min-h-[450px] justify-center"
+			class="flex flex-col items-center gap-5 h-full min-h-[500px] justify-center"
 		>
 			<div
 				ref="animation"
@@ -159,29 +182,79 @@ const deleteCard = cardId => {
 					:wind="card.wind"
 					:date="card.date"
 					@delete-request="deleteCard(card.id)"
-					><LaterWeather
-						:deg="card.nextDay.deg"
-						:condition="card.nextDay.condition"
-						:humidity="card.nextDay.humidity"
-						:wind="card.nextDay.wind"
-						:date="card.nextDay.date"
-					/>
+				>
+					<template v-slot:cards>
+						<LaterWeather
+							:deg="card.nextDay.deg"
+							:condition="card.nextDay.condition"
+							:humidity="card.nextDay.humidity"
+							:wind="card.nextDay.wind"
+							:date="card.nextDay.date"
+						/>
 
-					<LaterWeather
-						:deg="card.thirdDay.deg"
-						:condition="card.thirdDay.condition"
-						:humidity="card.thirdDay.humidity"
-						:wind="card.thirdDay.wind"
-						:date="card.thirdDay.date"
-					/>
+						<LaterWeather
+							:deg="card.thirdDay.deg"
+							:condition="card.thirdDay.condition"
+							:humidity="card.thirdDay.humidity"
+							:wind="card.thirdDay.wind"
+							:date="card.thirdDay.date"
+						/>
 
-					<LaterWeather
-						:deg="card.fourthDay.deg"
-						:condition="card.fourthDay.condition"
-						:humidity="card.fourthDay.humidity"
-						:wind="card.fourthDay.wind"
-						:date="card.fourthDay.date"
-					/>
+						<LaterWeather
+							:deg="card.fourthDay.deg"
+							:condition="card.fourthDay.condition"
+							:humidity="card.fourthDay.humidity"
+							:wind="card.fourthDay.wind"
+							:date="card.fourthDay.date"
+						/>
+					</template>
+					<template v-slot:weather-icon>
+						<img
+							v-if="card.weatherId === '01d' || card.weatherId === '01n'"
+							:src="weatherIcons['01d']"
+							alt="clear sky"
+						/>
+						<img
+							v-else-if="card.weatherId === '02d' || card.weatherId === '02n'"
+							:src="weatherIcons['02d']"
+							alt="few clouds"
+						/>
+						<img
+							v-else-if="card.weatherId === '03d' || card.weatherId === '03n'"
+							:src="weatherIcons['03d']"
+							alt="scattered clouds"
+						/>
+						<img
+							v-else-if="card.weatherId === '04d' || card.weatherId === '04n'"
+							:src="weatherIcons['04d']"
+							alt="broken clouds"
+						/>
+						<img
+							v-else-if="card.weatherId === '09d' || card.weatherId === '09n'"
+							:src="weatherIcons['09d']"
+							alt="shower rain"
+						/>
+						<img
+							v-else-if="card.weatherId === '10d' || card.weatherId === '10n'"
+							:src="weatherIcons['10d']"
+							alt="rain"
+						/>
+						<img
+							v-else-if="card.weatherId === '11d' || card.weatherId === '11n'"
+							:src="weatherIcons['11d']"
+							alt="thunderstorm"
+						/>
+						<img
+							v-else-if="card.weatherId === '13d' || card.weatherId === '13n'"
+							:src="weatherIcons['13d']"
+							alt="snow"
+						/>
+						<img
+							v-else-if="card.weatherId === '50d' || card.weatherId === '50n'"
+							:src="weatherIcons['50d']"
+							alt="mist"
+						/>
+					</template>
 				</TodayWeather>
 				<!-- <div class="flex justify-center w-full py-2 gap-2 absolute bottom-0">
 					<a
@@ -204,7 +277,7 @@ const deleteCard = cardId => {
 					>
 				</div>
 			</div>
-			<BaseButton @click-request="deleteAllCards()" class="absolute bottom-28">
+			<BaseButton @click-request="deleteAllCards()" class="">
 				Delete all
 			</BaseButton>
 		</div>

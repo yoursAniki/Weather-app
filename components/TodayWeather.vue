@@ -22,7 +22,7 @@ const deleteCard = () => {
 <template>
 	<div class="flex flex-col h-full">
 		<div class="justify-center gap-1 sm:flex hidden">
-			<slot></slot>
+			<slot name="cards"></slot>
 		</div>
 		<div
 			class="bg-black bg-opacity-30 rounded-3xl h-80 max-w-[312px] w-full min-h-full text-white mt-1"
@@ -45,11 +45,9 @@ const deleteCard = () => {
 					</ul>
 				</div>
 				<div class="flex justify-around">
-					<img
-						class="select-none max-h-14"
-						src="/weather/Group 114.png"
-						alt="sunny"
-					/>
+					<div class="select-none max-h-14">
+						<slot name="weather-icon"></slot>
+					</div>
 					<div>
 						<div class="font-medium text-lg">{{ city }}</div>
 						<div class="text-sm">{{ date }}</div>
