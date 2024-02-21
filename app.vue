@@ -182,6 +182,7 @@ const deleteCard = cardId => {
 					:wind="card.wind"
 					:date="card.date"
 					@delete-request="deleteCard(card.id)"
+					:id="'item' + card.id"
 				>
 					<!-- Не совсем соответствует тз, но я решил, что это тоже неплохое решение -->
 					<!-- Рендер дочерних карточек с погодой (на следующие три дня) -->
@@ -259,14 +260,14 @@ const deleteCard = cardId => {
 						/>
 					</template>
 				</TodayWeather>
-				<!-- <div class="flex justify-center w-full py-2 gap-2 absolute bottom-0">
-					<a
-						v-for="card in refWeatherCards"
-						:href="'#item' + card.id"
-						class="btn btn-xs"
-						>{{ card.id }}</a
-					>
-				</div> -->
+			</div>
+			<div class="flex justify-center w-full py-2 gap-2 absolute bottom-0">
+				<a
+					v-for="card in refWeatherCards"
+					:href="'#item' + card.id"
+					class="btn btn-xs"
+					>{{ card.id + 1 }}</a
+				>
 			</div>
 			<div class="flex gap-1 flex-col items-center mt-auto pb-4 relative">
 				<!-- Отображение ошибки ввода -->
