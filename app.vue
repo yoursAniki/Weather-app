@@ -265,7 +265,7 @@ const deleteCard = cardId => {
 					>
 				</div> -->
 			</div>
-			<div class="flex gap-1 flex-col items-center mt-auto">
+			<div class="flex gap-1 flex-col items-center mt-auto pb-4 relative">
 				<p class="text-red-900">{{ refError }}</p>
 				<div class="flex">
 					<BaseInput @click-request="addCity()" />
@@ -276,10 +276,14 @@ const deleteCard = cardId => {
 						>Add</BaseButton
 					>
 				</div>
+				<BaseButton
+					v-show="refWeatherCards.values.length > 0"
+					@click-request="deleteAllCards()"
+					class="absolute -bottom-14"
+				>
+					Delete all
+				</BaseButton>
 			</div>
-			<BaseButton @click-request="deleteAllCards()" class="">
-				Delete all
-			</BaseButton>
 		</div>
 	</NuxtLayout>
 </template>
