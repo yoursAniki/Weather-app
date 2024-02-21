@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { defineEmits } from "vue";
-
 const emits = defineEmits(["click-request"]);
 
 const click = () => {

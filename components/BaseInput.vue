@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-import { defineEmits } from "vue";
-
-import { inject } from "vue";
-
 import type { MyData } from "/types/types.ts";
 
 const emits = defineEmits(["click-request"]);
