@@ -16,8 +16,8 @@ const deleteCard = () => {
 </script>
 
 <template>
-	<div class="flex flex-col h-full">
-		<div class="justify-center gap-1 sm:flex hidden">
+	<div class="flex flex-col h-full min-h-[420px]">
+		<div class="justify-center gap-1 sm:flex hidden h-full m-auto">
 			<!-- Слот для дочерних погодных карт -->
 			<slot name="cards"></slot>
 		</div>
