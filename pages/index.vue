@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import axios from "axios";
 import autoAnimate from "@formkit/auto-animate";
+import type { MyData } from "~/types/types";
 
 interface CityResponse {
 	name: string;
@@ -60,7 +61,7 @@ let error: string = "";
 const refError = ref(error);
 
 // Добавление карточки с погодой
-const addCity = () => {
+const addCity = (): void => {
 	if (city.message.trim().length < 2) {
 		refError.value = "You need to enter a name with a length of more than 1.";
 		return;
@@ -147,6 +148,7 @@ onMounted(() => {
 	autoAnimate(animation.value);
 });
 
+// Обновление индексов
 const updateIndexNum = () => {
 	refWeatherCards.value.forEach((card, index) => {
 		card.id = index;
@@ -154,16 +156,13 @@ const updateIndexNum = () => {
 };
 
 // Удаление всех карточек
-const deleteAllCards = () => {
+const deleteAllCards = (): void => {
 	refWeatherCards.value.splice(0, refWeatherCards.value.length);
 	id = 0;
 };
 
 // Удаление конкретной карточки
-const deleteCard = cardId => {
-	console.log(cardId);
-	// refWeatherCards.value.splice(cardId, 1);
-	// id--;
+const deleteCard = (cardId: number): void => {
 	if (cardId !== -1) {
 		refWeatherCards.value.splice(cardId, 1);
 		id--;
