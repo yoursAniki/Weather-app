@@ -147,6 +147,12 @@ onMounted(() => {
 	autoAnimate(animation.value);
 });
 
+const updateIndexNum = () => {
+	refWeatherCards.value.forEach((card, index) => {
+		card.id = index;
+	});
+};
+
 // Удаление всех карточек
 const deleteAllCards = () => {
 	refWeatherCards.value.splice(0, refWeatherCards.value.length);
@@ -156,8 +162,13 @@ const deleteAllCards = () => {
 // Удаление конкретной карточки
 const deleteCard = cardId => {
 	console.log(cardId);
-	refWeatherCards.value.splice(cardId, 1);
-	id--;
+	// refWeatherCards.value.splice(cardId, 1);
+	// id--;
+	if (cardId !== -1) {
+		refWeatherCards.value.splice(cardId, 1);
+		id--;
+		updateIndexNum();
+	}
 };
 </script>
 
